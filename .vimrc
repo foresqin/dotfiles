@@ -24,7 +24,6 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'preservim/nerdtree'
 Plugin 'vimwiki/vimwiki'
 Plugin 'fatih/vim-go'
@@ -34,19 +33,12 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'luisjure/csound-vim'
+call vundle#end()
 
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/alok/notational-fzf-vim'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 call plug#end()
 
-let g:nv_search_paths = ['~/vimwiki/notes/code']
-
-
-
-
-
-call vundle#end()
 filetype plugin indent on
 
 """ easymotion
@@ -75,9 +67,6 @@ nnoremap <C-p> :Files  ~/<CR>
 nnoremap ,,f :Files<CR>
 nnoremap <C-q> :Buffers<CR>
 
-""" notational-fzf
-nnoremap <silent> <c-s> :NV<CR>
-
 """ leaderf
 " unset \f
 let g:Lf_ShortcutF = '' 
@@ -87,3 +76,5 @@ nnoremap <leader>r :LeaderfRgInteractive<CR>
 
 nnoremap <C-b> :LeaderfBuffer<CR>
 nnoremap <C-l> :LeaderfLine<CR>
+
+
