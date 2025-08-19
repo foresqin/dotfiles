@@ -2,9 +2,19 @@ set number relativenumber
 set cursorline
 set smartcase
 set hidden
+set mouse=a
 
 nnoremap n nzz
 nnoremap N Nzz
+
+nnoremap y "+y
+nnoremap yy "+yy
+nnoremap Y "+Y
+vnoremap y "+y
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>yy "+yy
+
 
 nnoremap <C-j> :bn<CR>
 nnoremap <C-k> :bp<CR>
@@ -24,6 +34,7 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'mbbill/undotree'
 Plugin 'preservim/nerdtree'
 Plugin 'vimwiki/vimwiki'
 Plugin 'fatih/vim-go'
@@ -32,11 +43,12 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'masukomi/vim-markdown-folding'
 Plugin 'luisjure/csound-vim'
 call vundle#end()
 
 call plug#begin('~/.vim/plugged')
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 filetype plugin indent on
@@ -57,24 +69,27 @@ autocmd VimEnter * if argc() == 0 | NERDTree | endif
 nnoremap ,n :NERDTreeCWD<CR>
 
 """ vimwiki
-let g:vimwiki_list = [{'path':'~/vimwiki', 'path_html':'~/cerebra/export/html/'}]
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/cerebra/export/html/'}]
+
+
 nnoremap \w\p :VimwikiDiaryPrevDay<CR>
 nnoremap \w\n :VimwikiDiaryNextDay<CR>
 nnoremap \w\d :VimwikiDiaryIndex<CR>
 
 """ fzf
 nnoremap <C-p> :Files  ~/<CR>
-nnoremap ,,f :Files<CR>
+nnoremap <C-f> :Files<CR>
+nnoremap <C-l> :Lines<CR>
+nnoremap <C-b> :BLines<CR>
 nnoremap <C-q> :Buffers<CR>
 
-""" leaderf
-" unset \f
-let g:Lf_ShortcutF = '' 
-nnoremap <leader>b :LeaderfBuffer<CR>
-nnoremap <leader>l :LeaderfLine<CR>
-nnoremap <leader>r :LeaderfRgInteractive<CR>
+""" undotree
+nnoremap <leader>u :UndotreeToggle<CR>
 
-nnoremap <C-b> :LeaderfBuffer<CR>
-nnoremap <C-l> :LeaderfLine<CR>
+""" ripgrpe
+nnoremap <C-s> :Rg<Space>
+
+""" put all buffer in tabs
+nnoremap <leader>t :tabonly \| bufdo tab split<CR>
 
 
